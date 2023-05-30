@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework.authtoken',
     'rest_framework',
-    'knox',
     'corsheaders',
 ]
 
@@ -152,14 +151,9 @@ EST_FRAMEWORK = {
     'PAGE_SIZE': 50,
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        'knox.auth.TokenAuthentication',
     ]
 }
 
-JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER':
-    'churchapp.utils.jwt_response_payload_handler', 
-}
 
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_HOST = config('EMAIL_HOST')
