@@ -1,0 +1,36 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto"><img src="{% static 'assets/img/church (5).png' %}" alt=""></div>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'churchapp:home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="#tabs">Impact</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a href="{% url 'churchapp:events' %}" class="nav-link scrollto">Events</a></li>
+          <li class="dropdown"><a href="#"><span>Cermons</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li class="dropdown"><a href="#"><span>Weekly Cermons</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Sunday Cermons</a></li>
+                  <li><a href="#">Mid-Week cermons</a></li>
+                  <li><a href="#">Friday's kesha</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Monthly cermons</a></li>
+              <li><a href="#">Anual Cermons</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a href="{% url 'login' %}" class="nav-link scrollto">Login</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="#about" class="get-started-btn scrollto">DONATE</a>
+    </div>
+  </header><!-- End Header -->
