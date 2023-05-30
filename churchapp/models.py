@@ -35,6 +35,17 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} profile'
+
+class Cermon(models.Model):
+    id = models.AutoField(primary_key=True,unique=True)
+    theme = models.CharField(max_length=150)
+    reading = models.CharField(max_length=255)
+    link = models.CharField(max_length=255)
+    description = models.TextField()
+    image = CloudinaryField('image')
+    date = models.CharField(max_length=100,default="YYYY-MM-DD")
+    date_added = models.DateTimeField(auto_now_add=True)
+
     
 class Review(models.Model):
     first_name = models.CharField(max_length=100)

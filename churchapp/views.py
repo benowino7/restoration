@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework import filters
-from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm
-from .models import User,Profile,Review
+from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm
+from .models import User,Profile,Review,Cermon
 from django.views.generic import CreateView
 from django.contrib import messages
 
@@ -17,7 +17,8 @@ from django.contrib import messages
 
 def home(request):
     reviews = Review.objects.all()
-    return render(request, 'index.html',{"reviews": reviews})
+    cermons = Cermon.objects.all()
+    return render(request, 'index.html',{"reviews": reviews,"cermons":cermons})
 
 def Events(request):
     return render(request, 'blog.html')
@@ -67,6 +68,21 @@ def review_form(request):
         messages.error(request, 'Correct the error below')
 
     return render(request, 'review_form.html', { "form":form})
+
+
+@login_required(login_url='login')
+def cermon_form(request):
+    if request.method == 'POST':
+        form = CermonForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'cermon was added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = CermonForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
     
 
 # @login_required(login_url='login')

@@ -7,22 +7,22 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="{% url 'churchapp:home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
           <li><a class="nav-link scrollto" href="#tabs">Impact</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
           <li><a href="{% url 'churchapp:events' %}" class="nav-link scrollto">Events</a></li>
-          <li class="dropdown"><a href="#"><span>Cermons</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Sermons</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li class="dropdown"><a href="#"><span>Weekly Cermons</span> <i class="bi bi-chevron-right"></i></a>
+              <li><a href="#cermon">All Sermons</a></li>
+              <li class="dropdown"><a href="{% url 'churchapp:cermon_form' %}"><span>Weekly Sermons</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Sunday Cermons</a></li>
-                  <li><a href="#">Mid-Week cermons</a></li>
-                  <li><a href="#">Friday's kesha</a></li>
+                  <li><a href="#cermon">Sunday Sermons</a></li>
+                  <li><a href="#cermon">Mid-Week Sermons</a></li>
+                  <li><a href="#cermon">Friday's kesha</a></li>
                 </ul>
               </li>
-              <li><a href="#">Monthly cermons</a></li>
-              <li><a href="#">Anual Cermons</a></li>
+              <li><a href="#cermon">Monthly Sermons</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>

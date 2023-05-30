@@ -1,7 +1,7 @@
 # type:ignore
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Admin,Client,User,Review
+from .models import Profile,Admin,Client,User,Review,Cermon
 from django.db import transaction
 
 
@@ -57,3 +57,8 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('profile_pic','first_name','last_name','comment')
+
+class CermonForm(forms.ModelForm):
+    class Meta:
+        model = Cermon
+        fields = ('theme','description','reading','link','date','image')
