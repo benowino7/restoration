@@ -18,9 +18,26 @@ from django.contrib import messages
 def home(request):
     reviews = Review.objects.all()
     cermons = Cermon.objects.all()
+    excluded_categories = ['economical', 'social','technology']  # Names of categories to exclude
+    remaining = ImpactCategory.objects.exclude(name__in=excluded_categories)
+    for remained in remaining:
+        impact_items = Impact.objects.filter(category = remained)
+
+    s =ImpactCategory.objects.filter(name='social').first()
+    t =ImpactCategory.objects.filter(name='technology').first()
+    e =ImpactCategory.objects.filter(name='economical').first()
+    social = Impact.objects.filter(category = s).all()
+    technology = Impact.objects.filter(category = t).all()
+    economical = Impact.objects.filter(category = e).all()
+    donation_methods = PaymentMethod.objects.all()
     context = {
         "reviews": reviews,
         "cermons":cermons,
+        "impacts":impact_items,
+        "donation_methods":donation_methods,
+        "social":social,
+        "technology":technology,
+        "economical":economical,
                }
 
     return render(request, 'index.html',context)
