@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework import filters
-from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm
-from .models import User,Profile,Review,Cermon
+from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm
+from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod
 from django.views.generic import CreateView
 from django.contrib import messages
 
@@ -18,10 +18,16 @@ from django.contrib import messages
 def home(request):
     reviews = Review.objects.all()
     cermons = Cermon.objects.all()
-    return render(request, 'index.html',{"reviews": reviews,"cermons":cermons})
+    context = {
+        "reviews": reviews,
+        "cermons":cermons,
+               }
+
+    return render(request, 'index.html',context)
 
 def Events(request):
-    return render(request, 'blog.html')
+    events = Event.objects.all()
+    return render(request, 'blog.html',{"events": events})
 
 class AdminSignUpView(CreateView):
     model = User
@@ -76,10 +82,66 @@ def cermon_form(request):
         form = CermonForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'cermon was added successfully!')
+            messages.success(request, 'Sermon added successfully!')
             return redirect('churchapp:home')
     else:
         form = CermonForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+@login_required(login_url='login')
+def event_form(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Event added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = EventForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+@login_required(login_url='login')
+def impact_category_form(request):
+    if request.method == 'POST':
+        form = ImpactCategoryForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = ImpactCategoryForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+@login_required(login_url='login')
+def impact_form(request):
+    if request.method == 'POST':
+        form = ImpactForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Impact item added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = ImpactForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+@login_required(login_url='login')
+def payment_method_form(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Payment method added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = PaymentForm()
         messages.error(request, 'Correct the error below')
 
     return render(request, 'cermon_form.html', { "form":form})
