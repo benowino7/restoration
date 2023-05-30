@@ -9,8 +9,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework import filters
 from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm
 from .models import User,Profile
-from django.utils.crypto import get_random_string
 from django.views.generic import CreateView
+from django.contrib import messages
+
 
 
 
