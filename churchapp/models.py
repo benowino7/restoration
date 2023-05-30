@@ -35,3 +35,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} profile'
+    
+class Review(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    profile_pic = CloudinaryField('image')
+    comment = models.TextField(max_length=300,default=' add a comment')

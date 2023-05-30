@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework import filters
-from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm
-from .models import User,Profile
+from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm
+from .models import User,Profile,Review
 from django.views.generic import CreateView
 from django.contrib import messages
 
@@ -16,7 +16,8 @@ from django.contrib import messages
 
 
 def home(request):
-    return render(request, 'index.html')
+    reviews = Review.objects.all()
+    return render(request, 'index.html',{"reviews": reviews})
 
 def Events(request):
     return render(request, 'blog.html')
@@ -48,6 +49,24 @@ class ClientSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('login')
+
+
+
+
+
+@login_required(login_url='login')
+def review_form(request):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'testimony was added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = ReviewForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'review_form.html', { "form":form})
     
 
 # @login_required(login_url='login')

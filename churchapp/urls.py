@@ -3,7 +3,7 @@ from django.urls import path,include
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home,Events,AdminSignUpView,ClientSignUpView
+from .views import home,Events,AdminSignUpView,ClientSignUpView,review_form
 
 
 app_name = 'churchapp'
@@ -15,6 +15,7 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path('accounts/signup/admin/3567/', AdminSignUpView.as_view(), name='admin_signup'),
     path('accounts/signup/client/', ClientSignUpView.as_view(), name='client_signup'),
+    path('Testimony/form',review_form,name='review_form'),
 
     ]
 if settings.DEBUG:

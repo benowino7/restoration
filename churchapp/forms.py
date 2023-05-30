@@ -1,8 +1,7 @@
 # type:ignore
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
-from .models import Profile,Admin,Client,User
+from .models import Profile,Admin,Client,User,Review
 from django.db import transaction
 
 
@@ -52,3 +51,9 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('name', 'location', 'profile_pic')
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('profile_pic','first_name','last_name','comment')
