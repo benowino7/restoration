@@ -360,23 +360,23 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-title">
-        <h2>Portfolio</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-          consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+        <h2>Church Gallery</h2>
+        <p>"And this is the testimony, that God gave us eternal life, and this life is in his Son. Whoever has the Son has life; whoever does not have the Son of God does not have life." - 1 John 5:11-12 (ESV)</p>
       </div>
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <li data-filter=".filter-app">Ministry</li>
+            <li data-filter=".filter-card">Outreach</li>
+            <li data-filter=".filter-web">Donation</li>
           </ul>
         </div>
       </div>
 
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+    
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <div class="portfolio-wrap">
@@ -536,10 +536,10 @@
             <h3>{{method.method}}</h3>
             <!-- <h4><sup>$</sup>19<span> / month</span></h4> -->
             <ul>
-              {% if method.email %}<li>{{method.email}}</li>{% endif %}
-              {% if method.till %}<li>{{method.till}}</li>{% endif %}
-              {% if method.paybill %}<li>{{method.paybill}}</li>{% endif %}
-              {% if method.account %}<li>{{method.account}}</li>{% endif %}
+              {% if method.email %}<li>Email: {{method.email}}</li>{% endif %}
+              {% if method.till %}<li>Till: {{method.till}}</li>{% endif %}
+              {% if method.paybill %}<li>Paybill: {{method.paybill}}</li>{% endif %}
+              {% if method.account %}<li>Account: {{method.account}}</li>{% endif %}
               <li class="na">Massa ultricies mi</li>
             </ul>
             <div class="btn-wrap">

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework import filters
-from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm
+from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm,GalleryForm
 from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod
 from django.views.generic import CreateView
 from django.contrib import messages
@@ -159,6 +159,20 @@ def payment_method_form(request):
             return redirect('churchapp:home')
     else:
         form = PaymentForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+@login_required(login_url='login')
+def gallery_form(request):
+    if request.method == 'POST':
+        form = GalleryForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Gallery Image added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form = GalleryForm()
         messages.error(request, 'Correct the error below')
 
     return render(request, 'cermon_form.html', { "form":form})
