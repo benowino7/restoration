@@ -518,6 +518,41 @@
     </div>
   </section><!-- End Portfolio Section -->
 
+  <section id="pricing" class="pricing section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Donate Or Support A Course</h2>
+        <p>"Each one must give as he has decided in his heart, not reluctantly or under compulsion, for God loves a cheerful giver." - 2 Corinthians 9:7 (ESV)</p>
+        <p>
+          "Whoever is generous to the poor lends to the Lord, and he will repay him for his deed." - Proverbs 19:17 (ESV)
+        </p>
+      </div>
+
+      <div class="row">
+        {% for method in donation_methods %}
+        <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+          <div class="box featured" data-aos="fade-up" data-aos-delay="200">
+            <h3>{{method.method}}</h3>
+            <!-- <h4><sup>$</sup>19<span> / month</span></h4> -->
+            <ul>
+              {% if method.email %}<li>{{method.email}}</li>{% endif %}
+              {% if method.till %}<li>{{method.till}}</li>{% endif %}
+              {% if method.paybill %}<li>{{method.paybill}}</li>{% endif %}
+              {% if method.account %}<li>{{method.account}}</li>{% endif %}
+              <li class="na">Massa ultricies mi</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="#pricing" class="btn-buy">Info</a>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+      </div>
+
+    </div>
+  </section><!-- End Pricing Section -->
+
   <!-- ======= Testimonials Section ======= -->
   <section id="testimonials" class="testimonials">
     <div class="container" data-aos="fade-up">
