@@ -8,7 +8,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework import filters
 from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm,GalleryForm
-from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod
+from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod,Gallery
 from django.views.generic import CreateView
 from django.contrib import messages
 
@@ -30,6 +30,9 @@ def home(request):
     technology = Impact.objects.filter(category = t).all()
     economical = Impact.objects.filter(category = e).all()
     donation_methods = PaymentMethod.objects.all()
+    ministry = Gallery.objects.filter(category ="ministry").all()
+    outreach = Gallery.objects.filter(category ="outreach").all()
+    donation = Gallery.objects.filter(category ="donation").all()
     context = {
         "reviews": reviews,
         "cermons":cermons,
@@ -38,6 +41,9 @@ def home(request):
         "social":social,
         "technology":technology,
         "economical":economical,
+        "donation":donation,
+        "outreach":outreach,
+        "ministry":ministry,
                }
 
     return render(request, 'index.html',context)
