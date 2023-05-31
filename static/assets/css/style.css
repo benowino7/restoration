@@ -361,6 +361,7 @@ h6 {
   background-size: cover;
   position: relative;
   padding-top: 82px;
+  z-index: -10;
 }
 
 #hero:before {

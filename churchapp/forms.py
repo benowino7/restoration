@@ -1,7 +1,7 @@
 # type:ignore
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Admin,Client,User,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod,Gallery
+from .models import Profile,Admin,Client,User,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod,Gallery,Team,Faq
 from django.db import transaction
 
 
@@ -88,3 +88,14 @@ class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
         fields = ('category','image')
+
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ('name','rank','image')
+
+class FaqForm(forms.ModelForm):
+    class Meta:
+        model = Faq
+        fields = ('question','answer')

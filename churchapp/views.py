@@ -2,8 +2,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm,GalleryForm
-from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod,Gallery
+from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm,GalleryForm,FaqForm,TeamForm
+from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod,Gallery,Team,Faq
 from django.views.generic import CreateView
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
@@ -190,6 +190,36 @@ def gallery_form(request):
             return redirect('churchapp:home')
     else:
         form = GalleryForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+
+@login_required(login_url='login')
+def faq_form(request):
+    if request.method == 'POST':
+        form = FaqForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Faqs added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form =FaqForm()
+        messages.error(request, 'Correct the error below')
+
+    return render(request, 'cermon_form.html', { "form":form})
+
+
+@login_required(login_url='login')
+def team_form(request):
+    if request.method == 'POST':
+        form = TeamForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Member added successfully!')
+            return redirect('churchapp:home')
+    else:
+        form =TeamForm()
         messages.error(request, 'Correct the error below')
 
     return render(request, 'cermon_form.html', { "form":form})

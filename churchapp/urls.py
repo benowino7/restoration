@@ -3,7 +3,7 @@ from django.urls import path,include
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home,Events,AdminSignUpView,ClientSignUpView,review_form,cermon_form,event_form,impact_form,impact_category_form,payment_method_form,gallery_form
+from .views import home,Events,AdminSignUpView,ClientSignUpView,review_form,cermon_form,event_form,impact_form,impact_category_form,payment_method_form,gallery_form,faq_form,team_form
 
 app_name = 'churchapp'
 
@@ -21,6 +21,8 @@ urlpatterns = [
     path('add/impact/form/',impact_form,name='impact_form'),
     path('add/payment/method/form/',payment_method_form,name='payment_form'),
     path('add/gallery-image/form/',gallery_form,name='gallery_form'),
+    path('add/new-member/form/',team_form,name='team_form'),
+    path('add/FAQ/form/',faq_form,name='faq_form'),
 
 
 

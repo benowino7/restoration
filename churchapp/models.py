@@ -108,4 +108,18 @@ class Gallery(models.Model):
     def __str__(self):
         return f'{self.category}'
 
+class Faq(models.Model):
+    id = models.AutoField(primary_key=True,unique=True)
+    question = models.CharField(max_length=255)
+    answer = models.CharField(max_length=255)
+    def __str__(self):
+        return f'{self.question}'
+    
 
+class Team(models.Model):
+    id = models.AutoField(primary_key=True,unique=True)
+    name = models.CharField(max_length=255)
+    rank = models.CharField(max_length=255)
+    image = CloudinaryField('image')
+    def __str__(self):
+        return f'{self.name}'
