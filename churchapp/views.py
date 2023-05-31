@@ -1,16 +1,12 @@
 # type:ignore
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
-from rest_framework import permissions
-from rest_framework.response import Response
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
-from rest_framework import filters
+from django.contrib.auth import login
 from .forms import UpdateUserForm,UpdateProfileForm,ClientSignUpForm,AdminSignUpForm,ReviewForm,CermonForm,EventForm,ImpactCategoryForm,ImpactForm,PaymentForm,GalleryForm
 from .models import User,Profile,Review,Cermon,ImpactCategory,Impact,Event,PaymentMethod,Gallery
 from django.views.generic import CreateView
 from django.contrib import messages
+from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
 
 
 
@@ -49,8 +45,23 @@ def home(request):
     return render(request, 'index.html',context)
 
 def Events(request):
-    events = Event.objects.all()
-    return render(request, 'blog.html',{"events": events})
+    products_db = Event.objects.all()
+    paginator = Paginator(products_db, 3)
+    page = request.GET.get('page')
+    count = paginator.get_page(page)
+    total_pages = count.paginator.num_pages
+    try:
+        events = paginator.get_page(page)
+    except PageNotAnInteger:
+       events = paginator.get_page(1)
+    except EmptyPage:
+        events = paginator.get_page(paginator.num_pages)
+    context= {
+        "events": events,
+        "total_pages": total_pages,
+        "count":count,
+    }
+    return render(request, 'blog.html',context)
 
 class AdminSignUpView(CreateView):
     model = User
