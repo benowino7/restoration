@@ -29,6 +29,8 @@ def home(request):
     ministry = Gallery.objects.filter(category ="ministry").all()
     outreach = Gallery.objects.filter(category ="outreach").all()
     donation = Gallery.objects.filter(category ="donation").all()
+    faqs = Faq.objects.all()
+    members = Team.objects.all()
     context = {
         "reviews": reviews,
         "cermons":cermons,
@@ -40,6 +42,8 @@ def home(request):
         "donation":donation,
         "outreach":outreach,
         "ministry":ministry,
+        "faqs":faqs,
+        "members":members,
                }
 
     return render(request, 'index.html',context)
